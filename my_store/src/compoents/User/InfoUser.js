@@ -1,20 +1,11 @@
-import {
-  Breadcrumb,
-  Layout,
-  Card,
-  Col,
-  Row,
-  Slider,
-  Divider,
-  Button,
-  Modal,
-} from "antd";
+import { Breadcrumb, Layout, Card, Button, Modal } from "antd";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import FormAdd from "../public/FormAdd";
-import FormUpdate from "../public/FormUpdate";
-import * as ACTIONS from "../store/actions";
+import * as ACTIONS from "../store/actions/user";
 import { useNavigate } from "react-router-dom";
+import "./InfoUser.css";
+import UpdateUser from "../public/updateUser/UpdateUser";
+import FormAddUser from "../public/updateUser/AddUserForm";
 
 const { Content } = Layout;
 const { Meta } = Card;
@@ -28,66 +19,63 @@ const style = {
 
 function InfoUser() {
   const navigate = useNavigate();
-  const [isAddd, setAdd] = useState(false);
-  const [isUpdate, setIsUpdate] = useState(false);
   const dispatch = useDispatch();
-  const { allProducts, product } = useSelector((state) => state.infoRd);
-  const [titleCard, setTitleCard] = useState("");
-  const [descriptionCard, setdescriptionCard] = useState("");
-  const token = localStorage.getItem("token");
+  const { allUsers } = useSelector((state) => state.infoUS);
+  const [NameUser, setNameUser] = useState("");
+  const [EmailUser, setEmailUser] = useState("");
+  const [PasswordUser, setPasswordUser] = useState("");
+  const [isUpdate, setIsUpdate] = useState(false);
 
   // cac ham cua modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpenAdd, setIsModalOpenAdd] = useState(false);
-  const showModalAdd = () => {
-    setIsModalOpenAdd(true);
-  };
-  const handleOkAdd = () => {
-    setIsModalOpenAdd(false);
-  };
-  const handleCancelAdd = () => {
-    setIsModalOpenAdd(false);
-  };
 
   const handleOk = () => {
-    setIsModalOpenAdd(false);
+    setIsModalOpen(false);
   };
   const handleCancel = () => {
-    setIsModalOpenAdd(false);
+    setIsModalOpen(false);
   };
 
   //Lay tat ca du lieu
   useEffect(() => {
-    dispatch(ACTIONS.getAll());
+    dispatch(ACTIONS.getAllUser());
   }, [dispatch]);
 
-  // su kien hien thi form them
-  // const handleClickAdd = () => {
-  //   setAdd(true);
-  // };
+  const showModalAdd = () => {
+    setIsModalOpenAdd(true);
+  };
 
+  const handleOkAdd = () => {
+    setIsModalOpenAdd(false);
+  };
+
+  const handleCancelAdd = () => {
+    setIsModalOpenAdd(false);
+  };
   //xoa
   const handleDelete = (id) => {
     if (window.confirm("Ban co muon xoa khong")) {
-      dispatch(ACTIONS.deleteProduct(id));
+      dispatch(ACTIONS.deleteUser(id));
     }
   };
 
   //sua
   const handleUpdate = (id) => {
-    dispatch(ACTIONS.getSingProduct(id));
+    dispatch(ACTIONS.getSingUser(id));
     setIsUpdate(true);
   };
 
   //xem
-  const handleDetail = (products) => {
+  const handleDetail = (user) => {
     setIsModalOpen(true);
-    setTitleCard(products.title);
-    setdescriptionCard(products.description);
+    setNameUser(user.username);
+    setEmailUser(user.email);
+    setPasswordUser(user.email);
   };
 
-  const handleUser = () => {
-    navigate("/search");
+  const handleBackHome = () => {
+    navigate("/content");
   };
 
   return (
@@ -110,89 +98,77 @@ function InfoUser() {
             minHeight: 380,
           }}
         >
-          {token && (
-            <>
-              <Button type="primary" onClick={showModalAdd}>
-                Thêm sản phẩm
-              </Button>
-              <Modal
-                className="modal_add"
-                title="FORM THÊM"
-                open={isModalOpenAdd}
-                onOk={handleOkAdd}
-                onCancel={handleCancelAdd}
-              >
-                <FormAdd product={product}></FormAdd>
-              </Modal>
+          <Button type="primary" onClick={handleBackHome}>
+            Quay lại
+          </Button>
 
-              <Button type="primary" onClick={handleUser}>
-                Thông tin người dùng
-              </Button>
-            </>
-          )}
-
-          {isUpdate && <FormUpdate></FormUpdate>}
-
-          <Divider orientation="left">Danh sách sản phẩm</Divider>
-          <Row gutter={16}>
-            {allProducts &&
-              allProducts.length > 0 &&
-              allProducts.map((products, index) => {
-                return (
-                  <Col key={index} className="gutter-row" span={4}>
-                    <div style={style}>
-                      <Card
-                        hoverable
-                        style={{
-                          width: 240,
-                        }}
-                        cover={
-                          <img
-                            className="img_card"
-                            alt="example"
-                            src={products.image}
-                          />
-                        }
-                      >
-                        <Meta
-                          title={products.description}
-                          description={products.category}
-                        />
-                        <div className="btn_card_product">
-                          <Button
-                            className="btn_delete"
-                            onClick={() => handleDelete(products.id)}
-                          >
-                            Xóa
-                          </Button>
-
-                          <Button
-                            className="btn_delete"
-                            onClick={() => handleUpdate(products.id)}
-                          >
-                            Sửa
-                          </Button>
-
-                          <Button
-                            type="primary"
-                            onClick={() => handleDetail(products)}
-                          >
-                            Xem
-                          </Button>
-                        </div>
-                      </Card>
-                    </div>
-                  </Col>
-                );
-              })}
-          </Row>
-
-          <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-            <p>{titleCard}</p>
-            <p>{descriptionCard}</p>
+          <Button type="primary" onClick={showModalAdd}>
+            Thêm Người Dùng
+          </Button>
+          <Modal
+            className="modal_add"
+            title="FORM THÊM"
+            open={isModalOpenAdd}
+            onOk={handleOkAdd}
+            onCancel={handleCancelAdd}
+          >
+            <FormAddUser></FormAddUser>
           </Modal>
+
+          {isUpdate && <UpdateUser></UpdateUser>}
+          <table className="table_user">
+            <thead>
+              <tr>
+                <th>Họ tên</th>
+                <th>Email</th>
+                <th>Mật khẩu</th>
+                <th>SDT</th>
+                <th>Thêm/Sửa</th>
+              </tr>
+            </thead>
+            <tbody>
+              {allUsers &&
+                allUsers.length > 0 &&
+                allUsers.map((user, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{user.username}</td>
+                      <td>{user.email}</td>
+                      <td>{user.password}</td>
+                      <td>{user.phone}</td>
+                      <td className="td_tsx">
+                        <Button
+                          className="btn_tb"
+                          onClick={() => handleUpdate(user.id)}
+                        >
+                          Sửa
+                        </Button>
+                        <Button
+                          className="btn_tb"
+                          onClick={() => handleDelete(user.id)}
+                        >
+                          Xóa
+                        </Button>
+                        <Button
+                          className="btn_tb"
+                          onClick={() => handleDetail(user)}
+                        >
+                          Xem
+                        </Button>
+                      </td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
         </div>
       </Content>
+
+      <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <p>Name: {NameUser}</p>
+        <p>Email: {EmailUser}</p>
+        <p>Password: {PasswordUser}</p>
+      </Modal>
     </>
   );
 }

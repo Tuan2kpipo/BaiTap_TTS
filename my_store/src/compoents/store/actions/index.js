@@ -19,7 +19,7 @@ export const deleteProduct = (id) => {
       .delete(`${BASE_URL}/products/${id}`)
       .then((res) => {
         console.log("res", res);
-        dispatch({ type: Types.DELETE_PRODUCT, payload: id });
+        dispatch({ type: Types.DELETE_PRODUCT, payload: res.data.id });
       })
       .catch((error) => console.log("error", error));
   };
@@ -48,6 +48,7 @@ export const getSingProduct = (id) => {
       .catch((error) => console.log("error", error));
   };
 };
+
 export const updateProduct = (product, id) => {
   return function (dispatch) {
     axios

@@ -63,11 +63,6 @@ function LayOutContent() {
     dispatch(ACTIONS.getAll());
   }, [dispatch]);
 
-  // su kien hien thi form them
-  // const handleClickAdd = () => {
-  //   setAdd(true);
-  // };
-
   //xoa
   const handleDelete = (id) => {
     if (window.confirm("Ban co muon xoa khong")) {
@@ -89,7 +84,7 @@ function LayOutContent() {
   };
 
   const handleUser = () => {
-    navigate("/search");
+    navigate("/user");
   };
 
   return (
@@ -124,7 +119,7 @@ function LayOutContent() {
                 onOk={handleOkAdd}
                 onCancel={handleCancelAdd}
               >
-                <FormAdd product={product}></FormAdd>
+                <FormAdd></FormAdd>
               </Modal>
 
               <Button type="primary" onClick={handleUser}>

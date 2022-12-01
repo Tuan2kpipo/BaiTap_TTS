@@ -12,8 +12,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path={path.HOME} element={<LayoutStore></LayoutStore>}>
-          <Route path={path.LOGIN} element={<LoginForm></LoginForm>}></Route>
+        <Route path={path.HOME} element={<LoginForm></LoginForm>}></Route>
+        <Route element={<LayoutStore></LayoutStore>}>
           <Route
             path={path.CONTENT}
             element={<LayOutContent></LayOutContent>}

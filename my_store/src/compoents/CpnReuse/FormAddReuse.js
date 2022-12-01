@@ -1,18 +1,13 @@
-import { Button, Form, Input, InputNumber, Upload } from "antd";
+import { Button, Input } from "antd";
 import React, { useState } from "react";
 import "./FormAdd.css";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../store/actions/index";
 
-function FormAdd() {
+function FormAdd(cpnState) {
   const dispatch = useDispatch();
-  const [state, setState] = useState({
-    name: "",
-    price: "",
-    description: "",
-    category: "",
-    image: "",
-  });
+  const [state, setState] = useState(cpnState);
+
   const { name, price, description, category, image } = state;
 
   const handleInputOnChange = (e) => {

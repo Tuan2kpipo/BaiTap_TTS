@@ -13,8 +13,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FormAdd from "../public/FormAdd";
 import FormUpdate from "../public/FormUpdate";
-import * as ACTIONS from "../store/actions";
-import "../Layout/content.css";
+import * as ACTIONS from "../store/actions/index";
+import { useNavigate } from "react-router-dom";
 
 const { Content } = Layout;
 const { Meta } = Card;
@@ -26,35 +26,45 @@ const style = {
   justifyContent: "center",
 };
 
-function SearchContent() {
+function InfoUser() {
+  const navigate = useNavigate();
   const [isAddd, setAdd] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
   const dispatch = useDispatch();
-  const { allProducts, product, getSearch } = useSelector(
-    (state) => state.infoRd
-  );
+  const { allProducts, product } = useSelector((state) => state.infoRd);
   const [titleCard, setTitleCard] = useState("");
   const [descriptionCard, setdescriptionCard] = useState("");
-  const { userLogin } = useSelector((state) => state.infoRd);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const token = localStorage.getItem("token");
-  const keys = ["description"];
+
+  // cac ham cua modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpenAdd, setIsModalOpenAdd] = useState(false);
+  const showModalAdd = () => {
+    setIsModalOpenAdd(true);
+  };
+  const handleOkAdd = () => {
+    setIsModalOpenAdd(false);
+  };
+  const handleCancelAdd = () => {
+    setIsModalOpenAdd(false);
+  };
+
+  const handleOk = () => {
+    setIsModalOpenAdd(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpenAdd(false);
+  };
+
   //Lay tat ca du lieu
   useEffect(() => {
     dispatch(ACTIONS.getAll());
   }, [dispatch]);
 
   // su kien hien thi form them
-  const handleClickAdd = () => {
-    setAdd(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+  // const handleClickAdd = () => {
+  //   setAdd(true);
+  // };
 
   //xoa
   const handleDelete = (id) => {
@@ -74,6 +84,10 @@ function SearchContent() {
     setIsModalOpen(true);
     setTitleCard(products.title);
     setdescriptionCard(products.description);
+  };
+
+  const handleUser = () => {
+    navigate("/search");
   };
 
   return (
@@ -98,26 +112,32 @@ function SearchContent() {
         >
           {token && (
             <>
-              <Button onClick={handleClickAdd} type="primary">
+              <Button type="primary" onClick={showModalAdd}>
                 Thêm sản phẩm
+              </Button>
+              <Modal
+                className="modal_add"
+                title="FORM THÊM"
+                open={isModalOpenAdd}
+                onOk={handleOkAdd}
+                onCancel={handleCancelAdd}
+              >
+                <FormAdd product={product}></FormAdd>
+              </Modal>
+
+              <Button type="primary" onClick={handleUser}>
+                Thông tin người dùng
               </Button>
             </>
           )}
 
-          {/* <Button onClick={handleClickAdd} type="primary">
-            Thêm sản phẩm
-          </Button> */}
-
-          {isAddd && <FormAdd product={product}></FormAdd>}
           {isUpdate && <FormUpdate></FormUpdate>}
 
           <Divider orientation="left">Danh sách sản phẩm</Divider>
           <Row gutter={16}>
-            {allProducts
-              .filter((item) =>
-                keys.some((key) => item[key].toLowerCase().includes(getSearch))
-              )
-              .map((products, index) => {
+            {allProducts &&
+              allProducts.length > 0 &&
+              allProducts.map((products, index) => {
                 return (
                   <Col key={index} className="gutter-row" span={4}>
                     <div style={style}>
@@ -177,4 +197,4 @@ function SearchContent() {
   );
 }
 
-export default SearchContent;
+export default InfoUser;

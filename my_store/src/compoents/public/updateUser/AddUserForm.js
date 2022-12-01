@@ -1,19 +1,19 @@
 import { Button, Form, Input, InputNumber, Upload } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
-import "./FormAdd.css";
-import { useDispatch } from "react-redux";
-import { addProduct } from "../store/actions/index";
 
-function FormAdd() {
+import { useDispatch } from "react-redux";
+import { addUser } from "../../store/actions/user";
+
+function AddUserForm() {
   const dispatch = useDispatch();
   const [state, setState] = useState({
-    name: "",
-    price: "",
-    description: "",
-    category: "",
-    image: "",
+    username: "",
+    email: "",
+    password: "",
+    phone: "",
   });
-  const { name, price, description, category, image } = state;
+  const { username, email, password, phone } = state;
 
   const handleInputOnChange = (e) => {
     let { name, value } = e.target;
@@ -26,7 +26,8 @@ function FormAdd() {
     let { name, value } = e.target;
     setState({ ...state, [name]: value });
 
-    dispatch(addProduct(state));
+    console.log("state form adduser", state);
+    dispatch(addUser(state));
   };
 
   return (
@@ -34,52 +35,45 @@ function FormAdd() {
       <div className="ip_form">
         <label className="title_formcreate text-xs">Name</label>
         <Input
-          name="name"
+          name="username"
           onChange={handleInputOnChange}
           type="text"
           className="input-from"
-          value={name || ""}
+          value={username || ""}
         ></Input>
 
-        <label className="text-xs">Price</label>
+        <label className="text-xs">Email</label>
         <Input
-          name="price"
+          name="email"
           onChange={handleInputOnChange}
           type="text"
           className="input-from"
-          value={price || ""}
+          value={email || ""}
         ></Input>
 
-        <label className="text-xs">Description</label>
+        <label className="text-xs">Password</label>
         <Input
-          name="description"
+          name="password"
           onChange={handleInputOnChange}
           type="text"
           className="input-from"
-          value={description || ""}
+          value={password || ""}
         ></Input>
 
-        <label className="text-xs">Category</label>
+        <label className="text-xs">SDT</label>
         <Input
-          name="category"
+          name="phone"
           onChange={handleInputOnChange}
           type="text"
           className="input-from"
-          value={category || ""}
-        ></Input>
-
-        <label className="text-xs">Image</label>
-        <Input
-          name="image"
-          onChange={handleInputOnChange}
-          type="text"
-          className="input-from"
-          value={image || ""}
+          value={phone || ""}
         ></Input>
 
         <div className="btn_form_add">
+          <Button className="btn_f btn_close">Dong</Button>
+
           <Button onClick={handleInputOnChangeXacnhan} className="btn_f">
-            Xac nhan
+            Them
           </Button>
         </div>
       </div>
@@ -87,4 +81,4 @@ function FormAdd() {
   );
 }
 
-export default FormAdd;
+export default AddUserForm;
