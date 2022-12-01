@@ -1,0 +1,51 @@
+.btn_card_product {
+  width: 100px;
+  height: 20px;
+  /* float: right; */
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.btn_card_product .ant-btn {
+  height: 28px;
+  /* background-color: #ccc; */
+}
+
+.btn_layout_header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal_add .ant-modal-footer {
+  display: none;
+}
+
+.ant-modal-content {
+  border-radius: 30px;
+}
+
+.ant-modal-header {
+  border-radius: 30px;
+}
+
+.modal_add .ant-modal-footer {
+  display: none;
+}
+
+.dropdown {
+  width: 100px;
+  margin-left: 10px;
+}
+
+.dropdown .ant-space {
+  background-color: #1890ff;
+  height: 32px;
+  width: 90px;
+  color: #fff;
+  border-radius: 4px;
+  padding: 0 4px;
+}
