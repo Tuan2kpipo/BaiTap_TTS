@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button, Modal, Checkbox, Form, Input } from "antd";
-import "../FormProduct/AddFormProduct.css";
+import "../formProduct/AddFormProduct.css";
 import { useDispatch } from "react-redux";
-import { addUser } from "../../store/actions/user";
+import { addUser } from "../../store/actions/User";
 
 function AddUserForm(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);

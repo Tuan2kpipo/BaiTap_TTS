@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Table, Space, Button, Modal } from "antd";
 import { useDispatch } from "react-redux";
-import * as ACTIONS from "../store/actions/user";
+import * as ACTIONS from "../store/actions/User";
 import "./CpnTable.css";
-import UpdateUser from "../public/FormUser/UpdateUser";
+import UpdateUser from "../public/formUser/UpdateUserForm";
 
 function CpnTable(props) {
   const { allInfo } = props;
@@ -37,12 +37,6 @@ function CpnTable(props) {
     }
   };
 
-  // chuc nang sua
-  const handleUpdate = (id) => {
-    dispatch(ACTIONS.getSingUser(id));
-    setIsUpdate(true);
-  };
-
   return (
     <div className="tb_cpn">
       {isUpdate && <UpdateUser></UpdateUser>}
@@ -66,7 +60,10 @@ function CpnTable(props) {
 
               <UpdateUser idupdateUser={record}></UpdateUser>
 
-              <Button className="btn_tb" onClick={() => handleDelete(record)}>
+              <Button
+                className="btn_tb"
+                onClick={() => handleDelete(record.id)}
+              >
                 Xóa
               </Button>
               <Button className="btn_tb" onClick={() => handleDetail(record)}>

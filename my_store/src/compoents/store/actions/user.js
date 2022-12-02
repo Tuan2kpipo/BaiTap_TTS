@@ -30,7 +30,8 @@ export const updateUserr = (user, id) => {
     axios
       .put(`${BASE_URL_USER}/users/${id}`, user)
       .then((res) => {
-        console.log("sua thnah cong", res);
+        console.log("sua thnah cong", res.data);
+        console.log(id);
         dispatch({ type: Types.UPDATE_USER, payload: res.data });
       })
       .catch((error) => console.log("error", error));

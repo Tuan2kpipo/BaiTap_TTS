@@ -2,9 +2,9 @@ import { Button, Layout, Input, Dropdown, Space } from "antd";
 import React, { useCallback, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import "./content.css";
-import { path } from "../Ultils/constant";
+import { path } from "../Ultils/Constant";
 import { useDispatch, useSelector } from "react-redux";
-import { getSearchh } from "../store/actions";
+import { getSearchh } from "../store/actions/Product";
 
 const { Header } = Layout;
 

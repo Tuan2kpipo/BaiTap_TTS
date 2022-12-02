@@ -2,7 +2,7 @@ import { Button, Checkbox, Form, Input } from "antd";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { login } from "../store/actions";
+import { login } from "../store/actions/Product";
 
 function LoginForm() {
   const navigate = useNavigate();

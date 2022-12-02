@@ -1,12 +1,12 @@
 import { Breadcrumb, Layout, Button, Modal } from "antd";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as ACTIONS from "../store/actions/user";
+import * as ACTIONS from "../store/actions/User";
 import { useNavigate } from "react-router-dom";
 import "./InfoUser.css";
 import { Space, Table, Tag } from "antd";
 import CpnTable from "../Table/CpnTable";
-import AddUserForm from "../public/FormUser/AddUserForm";
+import AddUserForm from "../public/formUser/AddUserForm";
 
 const { Content } = Layout;
 const { Column, ColumnGroup } = Table;

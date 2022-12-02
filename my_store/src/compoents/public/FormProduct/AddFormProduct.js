@@ -3,7 +3,7 @@ import { Button, Modal, Checkbox, Form, Input } from "antd";
 import "./AddFormProduct.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addProduct } from "../../store/actions";
+import { addProduct } from "../../store/actions/Product";
 
 function AddFormProduct(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -3,7 +3,7 @@ import { Button, Modal, Checkbox, Form, Input } from "antd";
 import "./AddFormProduct.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addProduct, updateProduct } from "../../store/actions";
+import { addProduct, updateProduct } from "../../store/actions/Product";
 
 function UpdateFormProduct(props) {
   const { products } = props;
@@ -38,7 +38,7 @@ function UpdateFormProduct(props) {
       description: products.description,
       image: products.image,
     });
-  }, []);
+  }, [products]);
   return (
     <>
       <Button type="primary" onClick={showModal}>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Checkbox, Form, Input } from "antd";
-import "../FormProduct/AddFormProduct.css";
+import "../formProduct/AddFormProduct.css";
 import { useDispatch } from "react-redux";
-import { addUser, updateUserr } from "../../store/actions/user";
+import { addUser, updateUserr } from "../../store/actions/User";
 
 function AddUserForm(props) {
   const { idupdateUser } = props;
@@ -19,9 +19,8 @@ function AddUserForm(props) {
 
   const dispatch = useDispatch();
   const onFinish = (values) => {
-    // setIsModalOpen(false);
-
     dispatch(updateUserr(values, idupdateUser.id));
+    setIsModalOpen(false);
     // console.log("uerrrrrrrrrrr", idupdateUser);
   };
   const onFinishFailed = (errorInfo) => {
@@ -31,12 +30,13 @@ function AddUserForm(props) {
   const [form] = Form.useForm();
   useEffect(() => {
     form.setFieldsValue({
+      id: idupdateUser.id,
       username: idupdateUser.username,
       email: idupdateUser.email,
       password: idupdateUser.password,
       phone: idupdateUser.phone,
     });
-  }, []);
+  }, [idupdateUser]);
 
   return (
     <>
@@ -76,7 +76,7 @@ function AddUserForm(props) {
 
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
             <Button type="danger" htmlType="submit">
-              Thêm
+              Sửa
             </Button>
           </Form.Item>
         </Form>

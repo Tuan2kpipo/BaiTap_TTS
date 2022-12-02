@@ -10,13 +10,12 @@ import {
 } from "antd";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import FormUpdate from "../public/FormUpdate";
-import * as ACTIONS from "../store/actions";
+import * as ACTIONS from "../store/actions/Product";
 import "./content.css";
 import "./LayOutContent.css";
 import { useNavigate } from "react-router-dom";
-import AddFormProduct from "../public/FormProduct/AddFormProduct";
-import UpdateFormProduct from "../public/FormProduct/UpdateFormProduct";
+import AddFormProduct from "../public/formProduct/AddFormProduct";
+import UpdateFormProduct from "../public/formProduct/UpdateFormProduct";
 
 const { Content } = Layout;
 const { Meta } = Card;
@@ -103,7 +102,7 @@ function LayOutContent() {
           <Button type="primary" onClick={handleUser}>
             Thông tin người dùng
           </Button>
-          {isUpdate && <FormUpdate></FormUpdate>}
+
           <Divider orientation="left">Danh sách sản phẩm</Divider>
           <Row gutter={16}>
             {allProducts &&
@@ -136,17 +135,9 @@ function LayOutContent() {
                           >
                             Xóa
                           </Button>
-                          {/* 
-                          <Button
-                            className="btn_delete"
-                            onClick={() => handleUpdate(products.id)}
-                          >
-                            Sửa
-                          </Button> */}
 
                           <UpdateFormProduct
                             products={products}
-                            showModalUpdate={showModalUpdate}
                           ></UpdateFormProduct>
 
                           <Button

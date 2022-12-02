@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import reducer from "./reducer";
-import user from "./user";
+import reducer from "./Product";
+import user from "./User";
 
 const rootReducer = combineReducers({
   infoRd: reducer,

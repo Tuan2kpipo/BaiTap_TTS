@@ -10,8 +10,7 @@ import {
 } from "antd";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import FormUpdate from "../public/FormUpdate";
-import * as ACTIONS from "../store/actions/index";
+import * as ACTIONS from "../store/actions/Product";
 import { useNavigate } from "react-router-dom";
 
 const { Content } = Layout;

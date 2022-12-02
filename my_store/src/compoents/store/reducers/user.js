@@ -38,6 +38,8 @@ const user = (state = reducerInitialState, action) => {
         }
       });
 
+      // let singuser = [...state.allUsers];
+      // console.log(singuser);
       return {
         ...state,
         allUsers: singuser,
