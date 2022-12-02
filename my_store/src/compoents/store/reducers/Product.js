@@ -34,7 +34,6 @@ const reducer = (state = reducerInitialState, action) => {
         var newObj;
         if (e.id === action.payload.id) {
           newObj = action.payload;
-
           return newObj;
         } else {
           return e;

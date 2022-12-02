@@ -3,6 +3,7 @@ import * as Types from "../types";
 
 const BASE_URL_USER = "https://fakestoreapi.com";
 
+// lay tat ca user
 export const getAllUser = () => async (dispatch) => {
   try {
     const result = await axios.get(`${BASE_URL_USER}/users`);
@@ -13,6 +14,7 @@ export const getAllUser = () => async (dispatch) => {
   }
 };
 
+// xoa user
 export const deleteUser = (id) => {
   return function (dispatch) {
     axios
@@ -25,6 +27,7 @@ export const deleteUser = (id) => {
   };
 };
 
+// cap nhat user
 export const updateUserr = (user, id) => {
   return function (dispatch) {
     axios
@@ -40,6 +43,7 @@ export const updateUserr = (user, id) => {
   };
 };
 
+// lay dl 1 ng dung theo id
 export const getSingUser = (id) => {
   return function (dispatch) {
     axios
@@ -52,6 +56,7 @@ export const getSingUser = (id) => {
   };
 };
 
+// them user
 export const addUser = (user) => {
   return function (dispatch) {
     axios

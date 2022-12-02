@@ -7,6 +7,9 @@ import { addUser, updateUserr } from "../../store/actions/User";
 function AddUserForm(props) {
   const { idupdateUser } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  // show modal
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -17,7 +20,6 @@ function AddUserForm(props) {
     setIsModalOpen(false);
   };
 
-  const dispatch = useDispatch();
   const onFinish = (values) => {
     dispatch(updateUserr(values, idupdateUser.id));
     setIsModalOpen(false);
@@ -26,6 +28,7 @@ function AddUserForm(props) {
     console.log("Failed:", errorInfo);
   };
 
+  // modal, day du lieu len input
   const [form] = Form.useForm();
   useEffect(() => {
     form.setFieldsValue({

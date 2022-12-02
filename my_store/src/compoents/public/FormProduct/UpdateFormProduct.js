@@ -8,6 +8,7 @@ import { addProduct, updateProduct } from "../../store/actions/Product";
 function UpdateFormProduct(props) {
   const { products } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // show modal
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -20,6 +21,8 @@ function UpdateFormProduct(props) {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  // update
   const onFinish = (values) => {
     dispatch(updateProduct(values, products.id));
     console.log("Success:", values);
@@ -29,6 +32,7 @@ function UpdateFormProduct(props) {
     console.log("Failed:", errorInfo);
   };
 
+  // day dl len the input
   const [form] = Form.useForm();
   useEffect(() => {
     form.setFieldsValue({

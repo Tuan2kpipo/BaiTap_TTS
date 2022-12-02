@@ -6,6 +6,9 @@ import { addUser } from "../../store/actions/User";
 
 function AddUserForm(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  // show modal
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -16,12 +19,12 @@ function AddUserForm(props) {
     setIsModalOpen(false);
   };
 
-  const dispatch = useDispatch();
   const onFinish = (values) => {
     dispatch(addUser(values));
     setIsModalOpen(false);
     // console.log(data);
   };
+
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };

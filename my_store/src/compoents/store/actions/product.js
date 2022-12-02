@@ -3,6 +3,7 @@ import * as Types from "../types";
 
 const BASE_URL = "https://fakestoreapi.com";
 
+// lay tat ca du lieu
 export const getAll = () => async (dispatch) => {
   try {
     const result = await axios.get(`${BASE_URL}/products`);
@@ -13,6 +14,7 @@ export const getAll = () => async (dispatch) => {
   }
 };
 
+// xoa san pham
 export const deleteProduct = (id) => {
   return function (dispatch) {
     axios
@@ -25,6 +27,7 @@ export const deleteProduct = (id) => {
   };
 };
 
+// them san pham
 export const addProduct = (product) => {
   return function (dispatch) {
     axios
@@ -37,6 +40,7 @@ export const addProduct = (product) => {
   };
 };
 
+// lay 1 du lieu san pham theo id
 export const getSingProduct = (id) => {
   return function (dispatch) {
     axios
@@ -49,6 +53,7 @@ export const getSingProduct = (id) => {
   };
 };
 
+// cap nhat san pham
 export const updateProduct = (product, id) => {
   return function (dispatch) {
     axios
@@ -61,6 +66,7 @@ export const updateProduct = (product, id) => {
   };
 };
 
+// dang nhap
 export const login = (data) => {
   return function (dispatch) {
     axios
@@ -74,10 +80,12 @@ export const login = (data) => {
   };
 };
 
+// dang xuat
 export const logout = () => ({
   type: Types.LOGOUT,
 });
 
+// tim kiem
 export const getSearchh = (search) => ({
   type: Types.GET_SEARCH,
   payload: search,

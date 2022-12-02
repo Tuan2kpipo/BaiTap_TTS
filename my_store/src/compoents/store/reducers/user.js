@@ -28,7 +28,7 @@ const user = (state = reducerInitialState, action) => {
       };
 
     case Types.UPDATE_USER:
-      let singuser = [...state.allUsers].map((e) => {
+      let listUser = [...state.allUsers].map((e) => {
         var newObj;
         if (e.id === action.payload.id) {
           newObj = action.payload;
@@ -38,11 +38,9 @@ const user = (state = reducerInitialState, action) => {
         }
       });
 
-      // let singuser = [...state.allUsers];
-      // console.log(singuser);
       return {
         ...state,
-        allUsers: singuser,
+        allUsers: listUser,
       };
 
     default:

@@ -13,6 +13,7 @@ function LoginForm() {
     console.log("Success:", values);
     navigate("/content");
   };
+
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
