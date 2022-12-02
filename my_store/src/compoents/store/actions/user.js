@@ -25,7 +25,7 @@ export const deleteUser = (id) => {
   };
 };
 
-export const updateUser = (user, id) => {
+export const updateUserr = (user, id) => {
   return function (dispatch) {
     axios
       .put(`${BASE_URL_USER}/users/${id}`, user)

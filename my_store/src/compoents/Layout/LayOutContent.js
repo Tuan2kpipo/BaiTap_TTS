@@ -4,19 +4,19 @@ import {
   Card,
   Col,
   Row,
-  Slider,
   Divider,
   Button,
   Modal,
 } from "antd";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import FormAdd from "../public/FormAdd";
 import FormUpdate from "../public/FormUpdate";
 import * as ACTIONS from "../store/actions";
 import "./content.css";
 import "./LayOutContent.css";
 import { useNavigate } from "react-router-dom";
+import AddFormProduct from "../public/FormProduct/AddFormProduct";
+import UpdateFormProduct from "../public/FormProduct/UpdateFormProduct";
 
 const { Content } = Layout;
 const { Meta } = Card;
@@ -30,32 +30,22 @@ const style = {
 
 function LayOutContent() {
   const navigate = useNavigate();
-  const [isAddd, setAdd] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
   const dispatch = useDispatch();
-  const { allProducts, product } = useSelector((state) => state.infoRd);
+  const { allProducts } = useSelector((state) => state.infoRd);
   const [titleCard, setTitleCard] = useState("");
   const [descriptionCard, setdescriptionCard] = useState("");
+  const [showModalUpdate, setShowModalUpdate] = useState(false);
   const token = localStorage.getItem("token");
 
   // cac ham cua modal
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isModalOpenAdd, setIsModalOpenAdd] = useState(false);
-  const showModalAdd = () => {
-    setIsModalOpenAdd(true);
-  };
-  const handleOkAdd = () => {
-    setIsModalOpenAdd(false);
-  };
-  const handleCancelAdd = () => {
-    setIsModalOpenAdd(false);
-  };
 
   const handleOk = () => {
-    setIsModalOpenAdd(false);
+    setIsModalOpen(false);
   };
   const handleCancel = () => {
-    setIsModalOpenAdd(false);
+    setIsModalOpen(false);
   };
 
   //Lay tat ca du lieu
@@ -73,7 +63,8 @@ function LayOutContent() {
   //sua
   const handleUpdate = (id) => {
     dispatch(ACTIONS.getSingProduct(id));
-    setIsUpdate(true);
+    // setIsUpdate(true);
+    setShowModalUpdate(true);
   };
 
   //xem
@@ -107,29 +98,12 @@ function LayOutContent() {
             minHeight: 380,
           }}
         >
-          {token && (
-            <>
-              <Button type="primary" onClick={showModalAdd}>
-                Thêm sản phẩm
-              </Button>
-              <Modal
-                className="modal_add"
-                title="FORM THÊM"
-                open={isModalOpenAdd}
-                onOk={handleOkAdd}
-                onCancel={handleCancelAdd}
-              >
-                <FormAdd></FormAdd>
-              </Modal>
+          <AddFormProduct></AddFormProduct>
 
-              <Button type="primary" onClick={handleUser}>
-                Thông tin người dùng
-              </Button>
-            </>
-          )}
-
+          <Button type="primary" onClick={handleUser}>
+            Thông tin người dùng
+          </Button>
           {isUpdate && <FormUpdate></FormUpdate>}
-
           <Divider orientation="left">Danh sách sản phẩm</Divider>
           <Row gutter={16}>
             {allProducts &&
@@ -162,13 +136,18 @@ function LayOutContent() {
                           >
                             Xóa
                           </Button>
-
+                          {/* 
                           <Button
                             className="btn_delete"
                             onClick={() => handleUpdate(products.id)}
                           >
                             Sửa
-                          </Button>
+                          </Button> */}
+
+                          <UpdateFormProduct
+                            products={products}
+                            showModalUpdate={showModalUpdate}
+                          ></UpdateFormProduct>
 
                           <Button
                             type="primary"
@@ -183,7 +162,6 @@ function LayOutContent() {
                 );
               })}
           </Row>
-
           <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
             <p>{titleCard}</p>
             <p>{descriptionCard}</p>

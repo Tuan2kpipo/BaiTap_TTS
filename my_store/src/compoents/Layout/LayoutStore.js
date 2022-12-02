@@ -36,7 +36,7 @@ function LayoutStore() {
     // setValueInput(keys);
     dispatch(getSearchh(keys));
     if (keys.length > 0) {
-      navigate("/content");
+      navigate("/search");
     } else navigate("/content");
   };
 

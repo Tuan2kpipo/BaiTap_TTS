@@ -1,10 +1,11 @@
 import "./App.css";
 import { Routes, Route, Router } from "react-router-dom";
 import { path } from "././compoents/Ultils/constant";
+import AddFormProduct from "./compoents/public/FormProduct/AddFormProduct";
 
 import LayoutStore from "./compoents/Layout/LayoutStore";
 import LayOutContent from "./compoents/Layout/LayOutContent";
-import { LoginForm } from "./compoents/public";
+import LoginForm from "./compoents/public/Login";
 import SearchMovies from "./compoents/SearchProduct/SearchProduct";
 import InfoUser from "./compoents/User/InfoUser";
 
@@ -25,6 +26,8 @@ function App() {
           <Route path={path.USER} element={<InfoUser></InfoUser>}></Route>
         </Route>
       </Routes>
+
+      {/* <AddFormProduct></AddFormProduct> */}
     </div>
   );
 }
