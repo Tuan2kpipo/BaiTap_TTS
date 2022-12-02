@@ -38,7 +38,8 @@ function UpdateFormProduct(props) {
       description: products.description,
       image: products.image,
     });
-  }, [products]);
+  }, [products, form]);
+
   return (
     <>
       <Button type="primary" onClick={showModal}>

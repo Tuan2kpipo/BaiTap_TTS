@@ -14,6 +14,10 @@
   /* background-color: #ccc; */
 }
 
+.btn_card_product {
+  margin-top: 30px;
+}
+
 .btn_layout_header {
   display: flex;
   align-items: center;

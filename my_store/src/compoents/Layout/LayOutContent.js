@@ -124,12 +124,10 @@ function LayOutContent() {
                           />
                         }
                       >
-                        <Meta
-                          title={products.description}
-                          description={products.category}
-                        />
+                        <Meta title={products.description} />
                         <div className="btn_card_product">
                           <Button
+                            type="primary"
                             className="btn_delete"
                             onClick={() => handleDelete(products.id)}
                           >

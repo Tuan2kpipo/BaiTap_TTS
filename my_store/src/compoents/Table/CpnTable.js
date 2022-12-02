@@ -51,22 +51,12 @@ function CpnTable(props) {
           key="action"
           render={(_, record) => (
             <Space className="space_tb" size="middle">
-              {/* <Button
-                className="btn_tb"
-                onClick={() => handleUpdate(record.id)}
-              >
-                Sửa
-              </Button> */}
-
               <UpdateUser idupdateUser={record}></UpdateUser>
 
-              <Button
-                className="btn_tb"
-                onClick={() => handleDelete(record.id)}
-              >
+              <Button type="primary" onClick={() => handleDelete(record.id)}>
                 Xóa
               </Button>
-              <Button className="btn_tb" onClick={() => handleDetail(record)}>
+              <Button type="primary" onClick={() => handleDetail(record)}>
                 Xem
               </Button>
             </Space>

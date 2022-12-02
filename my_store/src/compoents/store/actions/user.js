@@ -57,7 +57,7 @@ export const addUser = (user) => {
     axios
       .post(`${BASE_URL_USER}/users`, user)
       .then((res) => {
-        console.log("them thanh cong api user", res);
+        console.log("them thanh cong api user", { ...res.data, ...user });
         dispatch({ type: Types.ADD_USER, payload: { ...res.data, ...user } });
       })
       .catch((error) => console.log("error", error));

@@ -21,9 +21,16 @@ function AddFormProduct(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onFinish = (values) => {
-    dispatch(addProduct(values));
-    console.log("Success:", values);
+    setIsModalOpen(false);
+
+    const dataProduct = {
+      ...values,
+      id: Math.floor(Math.random() * 1000),
+    };
+    dispatch(addProduct(dataProduct));
+    console.log("Success:", dataProduct);
     navigate("/content");
+    setIsModalOpen(false);
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -35,7 +42,7 @@ function AddFormProduct(props) {
         Thêm sản phẩm
       </Button>
       <Modal
-        title="Basic Modal"
+        title="Thêm sản phẩm"
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}

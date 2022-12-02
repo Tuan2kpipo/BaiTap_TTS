@@ -21,7 +21,6 @@ function AddUserForm(props) {
   const onFinish = (values) => {
     dispatch(updateUserr(values, idupdateUser.id));
     setIsModalOpen(false);
-    // console.log("uerrrrrrrrrrr", idupdateUser);
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -36,7 +35,7 @@ function AddUserForm(props) {
       password: idupdateUser.password,
       phone: idupdateUser.phone,
     });
-  }, [idupdateUser]);
+  }, [idupdateUser, form]);
 
   return (
     <>
