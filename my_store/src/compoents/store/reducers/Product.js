@@ -30,7 +30,7 @@ const reducer = (state = reducerInitialState, action) => {
       };
 
     case Types.UPDATE_PRODUCT:
-      let singproduct = [...state.allProducts].map((e) => {
+      let listProducts = [...state.allProducts].map((e) => {
         var newObj;
         if (e.id === action.payload.id) {
           newObj = action.payload;
@@ -43,7 +43,7 @@ const reducer = (state = reducerInitialState, action) => {
 
       return {
         ...state,
-        allProducts: singproduct,
+        allProducts: listProducts,
       };
 
     case Types.LOGIN:
