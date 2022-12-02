@@ -57,7 +57,9 @@ function LayoutStore() {
 
             <Input placeholder="Tim kiem" onChange={handleSearch} />
             {token ? (
-              <Button onClick={logOut}>Đăng xuất</Button>
+              <Button className="logout" onClick={logOut}>
+                Đăng xuất
+              </Button>
             ) : (
               <div className="dropdown">
                 <Button type="primary" onClick={goLogin}>

@@ -30,13 +30,13 @@ const reducer = (state = reducerInitialState, action) => {
       };
 
     case Types.UPDATE_PRODUCT:
-      let listProducts = [...state.allProducts].map((e) => {
+      let listProducts = [...state.allProducts].map((item) => {
         var newObj;
-        if (e.id === action.payload.id) {
+        if (item.id === action.payload.id) {
           newObj = action.payload;
           return newObj;
         } else {
-          return e;
+          return item;
         }
       });
 
