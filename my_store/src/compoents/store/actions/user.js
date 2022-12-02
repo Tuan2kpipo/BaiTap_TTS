@@ -31,8 +31,10 @@ export const updateUserr = (user, id) => {
       .put(`${BASE_URL_USER}/users/${id}`, user)
       .then((res) => {
         console.log("sua thnah cong", res.data);
-        console.log(id);
-        dispatch({ type: Types.UPDATE_USER, payload: res.data });
+
+        console.log("lay ra thong tin 1 user", { ...res.data, id });
+
+        dispatch({ type: Types.UPDATE_USER, payload: { ...res.data, id } });
       })
       .catch((error) => console.log("error", error));
   };
