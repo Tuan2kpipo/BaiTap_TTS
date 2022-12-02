@@ -43,6 +43,7 @@ function AddUserForm(props) {
         Sửa
       </Button>
       <Modal
+        forceRender
         title="Thêm người dùng"
         open={isModalOpen}
         onOk={handleOk}

@@ -42,6 +42,7 @@ function AddFormProduct(props) {
         Thêm sản phẩm
       </Button>
       <Modal
+        forceRender
         title="Thêm sản phẩm"
         open={isModalOpen}
         onOk={handleOk}

@@ -46,6 +46,7 @@ function UpdateFormProduct(props) {
         Sửa
       </Button>
       <Modal
+        forceRender
         title="Sửa thông tin"
         open={isModalOpen}
         onOk={handleOk}
