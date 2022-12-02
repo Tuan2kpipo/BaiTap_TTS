@@ -11,7 +11,6 @@ const { Header } = Layout;
 function LayoutStore() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-
   const dispatch = useDispatch();
 
   // den trang dang nhap
@@ -58,12 +57,7 @@ function LayoutStore() {
 
             <Input placeholder="Tim kiem" onChange={handleSearch} />
             {token ? (
-              <Button
-                className="cursor-pointer hover:text-orange-500 text-blue-500 py-2 flex items-center gap-2"
-                onClick={logOut}
-              >
-                Đăng xuất
-              </Button>
+              <Button onClick={logOut}>Đăng xuất</Button>
             ) : (
               <div className="dropdown">
                 <Button type="primary" onClick={goLogin}>
